@@ -1,4 +1,4 @@
-package com.github.suusan2go.kotlinfillclass.intentions
+package com.github.developerutils.kotlinfunctionargumentshelper
 
 import com.intellij.openapi.editor.Editor
 import org.jetbrains.kotlin.builtins.KotlinBuiltIns
@@ -24,11 +24,14 @@ import org.jetbrains.kotlin.resolve.bindingContextUtil.getReferenceTargets
 import org.jetbrains.kotlin.resolve.lazy.BodyResolveMode
 import org.jetbrains.kotlin.resolve.lazy.descriptors.LazyClassDescriptor
 
-class FillClassIntention : SelfTargetingIntention<KtValueArgumentList>(KtValueArgumentList::class.java, "Fill class constructor") {
+class KotlinFunctionArgumentsHelperIntention : SelfTargetingIntention<KtValueArgumentList>(
+    KtValueArgumentList::class.java,
+    "Fill class constructor"
+) {
     override fun isApplicableTo(element: KtValueArgumentList, caretOffset: Int): Boolean {
         val descriptor = element.descriptor() ?: return false
         if (descriptor.valueParameters.size == element.arguments.size) return false
-        text = if (descriptor is ClassConstructorDescriptor) "Fill class constructor" else "Fill function"
+        text = if (descriptor is ClassConstructorDescriptor) "Fill constructor arguments" else "Fill function arguments"
         return true
     }
 
@@ -60,7 +63,10 @@ class FillClassIntention : SelfTargetingIntention<KtValueArgumentList>(KtValueAr
         }
     }
 
-    private fun createDefaultValueArgument(parameter: ValueParameterDescriptor, factory: KtPsiFactory): KtValueArgument {
+    private fun createDefaultValueArgument(
+        parameter: ValueParameterDescriptor,
+        factory: KtPsiFactory
+    ): KtValueArgument {
         val type = parameter.type
         val defaultValue = when {
             KotlinBuiltIns.isBoolean(type) -> "false"
@@ -89,7 +95,7 @@ class FillClassIntention : SelfTargetingIntention<KtValueArgumentList>(KtValueAr
 
         val fqName = descriptor?.importableFqName?.asString()
         val valueParameters =
-                descriptor?.constructors?.firstOrNull { it is ClassConstructorDescriptor }?.valueParameters
+            descriptor?.constructors?.firstOrNull { it is ClassConstructorDescriptor }?.valueParameters
         val argumentExpression = if (fqName != null && valueParameters != null) {
             (factory.createExpression("$fqName()")).also {
                 val callExpression = it as? KtCallExpression ?: (it as? KtQualifiedExpression)?.callExpression
