@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/DeveloperUtils/kotlin-function-arguments-helper.svg?style=svg)](https://circleci.com/gh/DeveloperUtils/kotlin-function-arguments-helper)
 
-Intellij plugin that provide intention action for empty constructor or function to fill property with default value.
+IntelliJ plugin that provide intention action for empty constructor or function to fill property with default value.
 
 Inspired by and extended from [Kotlin Fill Class Plugin](https://github.com/suusan2go/kotlin-fill-class)
 
@@ -12,6 +12,14 @@ This plugin adds an intention action for invalid constructor or function call ex
 ![kotlin function arguments helper demo](docs/kotlin-arguments-helper-demo.gif)
 
 ## How to install
+
+### Install from JetBrains Plugins Repository
+
+Find it in IntelliJ's plugin manager under *Kotlin Function Arguments Helper*
+or
+install it jetbrains plugins repository: <https://plugins.jetbrains.com/plugin/14168-kotlin-function-arguments-helper>
+
+### Build & Install from Disk
 
 0. Checkout repository `git clone https://github.com/DeveloperUtils/kotlin-function-arguments-helper.git`
    or `git clone git@github.com:DeveloperUtils/kotlin-function-arguments-helper.git`
