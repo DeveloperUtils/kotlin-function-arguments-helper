@@ -1,21 +1,30 @@
 <idea-plugin>
     <id>com.github.developerutils.kotlin-function-arguments-helper</id>
     <name>Kotlin Function Arguments Helper</name>
-    <version>2020.1.1</version>
+    <version>[filled-by-gradle]</version>
     <vendor email="ch.graupner@workingdeveloper.net" url="https://github.com/DeveloperUtils">WorkingDeveloper</vendor>
 
     <description><![CDATA[
-        <p>Intellij plugin that provide intention action for constructor or function to fill arguments with default value.</p>
-        <a target="_blank" href="https://github.com/DeveloperUtils/kotlin-function-arguments-helper/tree/master/docs/kotlin-arguments-helper-demo.gif" alt="fill-class" style="max-width:100%;"></a></p>
+        <p>
+           IntelliJ plugin that provides intention action for constructors or functions to fill in
+           arguments with name and a default value.
+        </p>
+
+        <p>
+           <a target="_blank"
+              href="https://user-images.githubusercontent.com/774381/79955782-8f69a580-847f-11ea-94fa-c07a8816d7f8.gif">
+              <img src="https://user-images.githubusercontent.com/774381/79955782-8f69a580-847f-11ea-94fa-c07a8816d7f8.gif"
+                   alt="kotlin-function-arguments-helper-demo animation"
+                   style="max-width:100%;"/>
+           </a>
+        </p>
     ]]></description>
 
-<!--    <change-notes><![CDATA[-->
-<!--    Add support for IntelliJ 2020.1-->
-<!--    ]]>-->
-<!--    </change-notes>-->
+    <change-notes>filled-by-gradle--filled-by-gradle--filled-by-gradle</change-notes>
 
     <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-    <idea-version since-build="192" until-build="203.*"/>
+    <!-- this is filled by gradle during build -->
+    <idea-version since-build="000" until-build="000"/>
 
     <depends>com.intellij.modules.lang</depends>
     <depends>org.jetbrains.kotlin</depends>
