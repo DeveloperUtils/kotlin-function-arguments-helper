@@ -11,7 +11,8 @@ class KotlinFunctionArgumentsHelperIntentionTest : BasePlatformTestCase() {
             fun test() {
                 User(<caret>)
             }
-        """, """
+        """,
+            """
             class User(val name: String, val age: Int)
             fun test() {
                 User(name = "", age = 0)

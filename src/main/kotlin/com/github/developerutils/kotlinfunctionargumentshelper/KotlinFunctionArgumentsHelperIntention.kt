@@ -24,14 +24,15 @@ import org.jetbrains.kotlin.resolve.bindingContextUtil.getReferenceTargets
 import org.jetbrains.kotlin.resolve.lazy.BodyResolveMode
 import org.jetbrains.kotlin.resolve.lazy.descriptors.LazyClassDescriptor
 
+@Suppress("Detekt.ComplexMethod", "Detekt.ReturnCount")
 class KotlinFunctionArgumentsHelperIntention : SelfTargetingIntention<KtValueArgumentList>(
     KtValueArgumentList::class.java,
-    "Fill class constructor"
+    { "Fill class constructor" }
 ) {
     override fun isApplicableTo(element: KtValueArgumentList, caretOffset: Int): Boolean {
         val descriptor = element.descriptor() ?: return false
         if (descriptor.valueParameters.size == element.arguments.size) return false
-        text = if (descriptor is ClassConstructorDescriptor) "Fill constructor arguments" else "Fill function arguments"
+        setTextGetter { if (descriptor is ClassConstructorDescriptor) "Fill constructor arguments" else "Fill function arguments" }
         return true
     }
 
