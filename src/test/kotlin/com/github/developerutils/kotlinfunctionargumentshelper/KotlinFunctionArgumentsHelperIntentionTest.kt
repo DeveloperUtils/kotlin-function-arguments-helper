@@ -11,7 +11,8 @@ class KotlinFunctionArgumentsHelperIntentionTest : BasePlatformTestCase() {
             fun test() {
                 User(<caret>)
             }
-        """, """
+        """,
+            """
             class User(val name: String, val age: Int)
             fun test() {
                 User(name = "", age = 0)
@@ -113,46 +114,50 @@ class KotlinFunctionArgumentsHelperIntentionTest : BasePlatformTestCase() {
     }
 
     fun `test add import directives`() {
-        val dependency = """
+        val dependency =
+            """
             package com.example
 
             class A
             class B(a: A)
-        """
+            """
         doAvailableTest(
             """
             import com.example.B
             
             val b = B(<caret>)
-        """,
+            """,
             """
             import com.example.A
             import com.example.B
             
             val b = B(a = A())
-        """, dependencies = listOf(dependency)
+            """,
+            dependencies = listOf(dependency)
         )
     }
 
     fun `test call java constructor`() {
-        val javaDependency = """
+        val javaDependency =
+            """
             public class Java {
                 public Java(String str) {
                 }
             }
-        """
+            """
         doUnavailableTest(
             """
             fun test() {
                 Java(<caret>)
             }
-        """,
+            """,
             javaDependencies = listOf(javaDependency)
         )
     }
 
     fun `test call java method`() {
-        val javaDependency = """
+        val javaDependency =
+            """
             public class Java {
                 public Java(String str) {
                 }
@@ -160,7 +165,7 @@ class KotlinFunctionArgumentsHelperIntentionTest : BasePlatformTestCase() {
                 public void foo(Java java) {
                 }
             }
-        """
+            """
 
         doUnavailableTest(
             """

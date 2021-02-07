@@ -1,44 +1,19 @@
 <idea-plugin>
     <id>com.github.developerutils.kotlin-function-arguments-helper</id>
     <name>Kotlin Function Arguments Helper</name>
-    <version>[filled-by-gradle]</version>
     <vendor email="ch.graupner@workingdeveloper.net" url="https://github.com/DeveloperUtils">WorkingDeveloper</vendor>
 
-    <description><![CDATA[
-        <p>
-           IntelliJ plugin that provides intention action for constructors or functions to fill in
-           arguments with name and a default value.
-        </p>
-
-        <p>
-           <a target="_blank"
-              href="https://user-images.githubusercontent.com/774381/79955782-8f69a580-847f-11ea-94fa-c07a8816d7f8.gif">
-              <img src="https://user-images.githubusercontent.com/774381/79955782-8f69a580-847f-11ea-94fa-c07a8816d7f8.gif"
-                   alt="kotlin-function-arguments-helper-demo animation"
-                   style="max-width:100%;"/>
-           </a>
-        </p>
-    ]]></description>
-
-    <change-notes>filled-by-gradle--filled-by-gradle--filled-by-gradle</change-notes>
-
-    <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-    <!-- this is filled by gradle during build -->
-    <idea-version since-build="000" until-build="000"/>
-
+    <!-- Product and plugin compatibility requirements -->
+    <!-- https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
     <depends>org.jetbrains.kotlin</depends>
 
+    <description><![CDATA[filled-by-idea-gradle-plugin from README.md]]></description>
     <extensions defaultExtensionNs="com.intellij">
         <intentionAction>
             <className>com.github.developerutils.kotlinfunctionargumentshelper.KotlinFunctionArgumentsHelperIntention</className>
             <category>Kotlin</category>
         </intentionAction>
     </extensions>
-
-    <application-components>
-    </application-components>
-
-    <project-components>
-    </project-components>
 </idea-plugin>
