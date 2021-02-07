@@ -32,7 +32,9 @@ class KotlinFunctionArgumentsHelperIntention : SelfTargetingIntention<KtValueArg
     override fun isApplicableTo(element: KtValueArgumentList, caretOffset: Int): Boolean {
         val descriptor = element.descriptor() ?: return false
         if (descriptor.valueParameters.size == element.arguments.size) return false
-        setTextGetter { if (descriptor is ClassConstructorDescriptor) "Fill constructor arguments" else "Fill function arguments" }
+        setTextGetter {
+            if (descriptor is ClassConstructorDescriptor) "Fill constructor arguments" else "Fill function arguments"
+        }
         return true
     }
 
