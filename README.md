@@ -1,4 +1,4 @@
-# kotlin-function-arguments-helper
+# ![Kotlin Function Arguments Helper](src/main/resources/META-INF/pluginIcon.svg) kotlin-function-arguments-helper 
 
 ![Build](https://github.com/WorkingDevel/kotlin-function-arguments-helper/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/com.github.developerutils.kotlin-function-arguments-helper.svg)](https://plugins.jetbrains.com/plugin/com.github.developerutils.kotlin-function-arguments-helper)
@@ -35,7 +35,7 @@ Inspired by and extended from [Kotlin Fill Class Plugin](https://github.com/suus
    or `git clone git@github.com:DeveloperUtils/kotlin-function-arguments-helper.git`
 1. Build this plugin `./gradlew build`
 2. Install the plugin from `./build/distributions/Kotlin Function Arguments Helper*.zip`
-   with *Install plugin from disk* in IDEA plugin manager
+   with <kbd>Install plugin from disk</kbd> in IDEA plugin manager
 
 ## Thanks
 
