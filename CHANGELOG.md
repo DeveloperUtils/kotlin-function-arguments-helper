@@ -3,7 +3,6 @@
 # Kotlin Function Arguments Helper Changelog
 
 ## [2021.1.1]
-
 ### Added
 - plugin logo
 
@@ -19,7 +18,6 @@
 - rebased plugin on [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
 
 ## [2020.1.2]
-
 ### Added
 - Added demo animation.
 
