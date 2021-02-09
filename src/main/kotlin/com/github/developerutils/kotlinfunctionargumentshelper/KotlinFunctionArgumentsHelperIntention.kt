@@ -47,17 +47,20 @@ class KotlinFunctionArgumentsHelperIntention : SelfTargetingIntention<KtValueArg
         val calleeExpression = getStrictParentOfType<KtCallExpression>()?.calleeExpression ?: return null
         val context = calleeExpression.analyze(BodyResolveMode.PARTIAL)
         val descriptor = calleeExpression.getReferenceTargets(context).firstOrNull() as? FunctionDescriptor
-        if (descriptor is JavaCallableMemberDescriptor) return null
-        return descriptor.takeIf { it is ClassConstructorDescriptor || it is SimpleFunctionDescriptor }
+        return if (descriptor is JavaCallableMemberDescriptor) {
+            null
+        } else {
+            descriptor.takeIf { it is ClassConstructorDescriptor || it is SimpleFunctionDescriptor }
+        }
     }
 
     private fun KtValueArgumentList.fillArguments(parameters: List<ValueParameterDescriptor>) {
-        val arguments = this.arguments
         val argumentNames = arguments.mapNotNull { it.getArgumentName()?.asName?.identifier }
         val factory = KtPsiFactory(this)
         parameters.forEachIndexed { index, parameter ->
-            if (arguments.size > index && !arguments[index].isNamed()) return@forEachIndexed
-            if (parameter.name.identifier in argumentNames) return@forEachIndexed
+            if (arguments.size > index && !arguments[index].isNamed()) return
+            if (parameter.name.identifier in argumentNames) return
+
             val added = addArgument(createDefaultValueArgument(parameter, factory))
             val argumentExpression = added.getArgumentExpression()
             if (argumentExpression is KtQualifiedExpression) {

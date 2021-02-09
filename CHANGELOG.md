@@ -2,32 +2,20 @@
 
 # Kotlin Function Arguments Helper Changelog
 
-## [2021.1.1]
+## [Unreleased]
 ### Added
 - plugin logo
 
 ### Changed
-- dropped support for IDEA before `2020.3`
+- rebased plugin on [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
 - build with kotlin `1.4.30`
+
+### Removed
+- dropped support for IDEA before `2020.3`
 
 ### Fixed
 - runs now with IDEA `2021.*`
-
-## [Unreleased]
-### Added
-
-### Changed
-
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
-## [unspecified]
-### Changed
-- rebased plugin on [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+- Release build pipeline
 
 ## [2020.1.2]
 ### Added
