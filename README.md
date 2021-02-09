@@ -1,8 +1,8 @@
 # ![Kotlin Function Arguments Helper](src/main/resources/META-INF/pluginIcon.svg) kotlin-function-arguments-helper 
 
 ![Build](https://github.com/DeveloperUtils/kotlin-function-arguments-helper/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/com.github.developerutils.kotlin-function-arguments-helper.svg)](https://plugins.jetbrains.com/plugin/com.github.developerutils.kotlin-function-arguments-helper)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.developerutils.kotlin-function-arguments-helper.svg)](https://plugins.jetbrains.com/plugin/com.github.developerutils.kotlin-function-arguments-helper)
+[![Version](https://img.shields.io/jetbrains/plugin/v/com.github.developerutils.kotlin-function-arguments-helper.svg)](https://plugins.jetbrains.com/plugin/14168-kotlin-function-arguments-helper)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.developerutils.kotlin-function-arguments-helper.svg)](https://plugins.jetbrains.com/plugin/14168-kotlin-function-arguments-helper)
 
 <!-- Plugin description -->
 IntelliJ plugin that provides intention action for constructors or functions to fill in arguments with name and a default value.
