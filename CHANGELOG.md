@@ -12,9 +12,11 @@
 ### Removed
 
 ### Fixed
+- patching `CHANGELOG.md` leaded to build error
 
 ### Security
-## [unspecified]
+
+## [2021.1.2]
 ### Added
 - plugin logo
 
