@@ -4,6 +4,18 @@
 
 ## [Unreleased]
 ### Added
+
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+## [2021.2.0]
+### Added
 - Plugin configuration options. You can now change the plugin behavior by setting options in the inspections settings. Currently, these two options are supported:
   - Don't add default values (guessed by variable type)
   - Do not add arguments that have default values declared
