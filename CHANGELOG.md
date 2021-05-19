@@ -6,6 +6,7 @@
 ### Added
 
 ### Changed
+- upgraded *gradle* to 7.0.2
 
 ### Deprecated
 
