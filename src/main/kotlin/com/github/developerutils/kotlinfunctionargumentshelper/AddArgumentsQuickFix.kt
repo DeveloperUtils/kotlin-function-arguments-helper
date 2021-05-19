@@ -1,66 +1,47 @@
 package com.github.developerutils.kotlinfunctionargumentshelper
 
-import com.intellij.openapi.editor.Editor
+import com.intellij.codeInspection.LocalQuickFix
+import com.intellij.codeInspection.ProblemDescriptor
+import com.intellij.openapi.project.Project
 import org.jetbrains.kotlin.builtins.KotlinBuiltIns
 import org.jetbrains.kotlin.descriptors.ClassConstructorDescriptor
 import org.jetbrains.kotlin.descriptors.ClassKind
-import org.jetbrains.kotlin.descriptors.FunctionDescriptor
 import org.jetbrains.kotlin.descriptors.Modality
-import org.jetbrains.kotlin.descriptors.SimpleFunctionDescriptor
 import org.jetbrains.kotlin.descriptors.ValueParameterDescriptor
-import org.jetbrains.kotlin.idea.caches.resolve.analyze
 import org.jetbrains.kotlin.idea.core.ShortenReferences
 import org.jetbrains.kotlin.idea.imports.importableFqName
-import org.jetbrains.kotlin.idea.intentions.SelfTargetingIntention
 import org.jetbrains.kotlin.idea.intentions.callExpression
-import org.jetbrains.kotlin.load.java.descriptors.JavaCallableMemberDescriptor
 import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtPsiFactory
 import org.jetbrains.kotlin.psi.KtQualifiedExpression
 import org.jetbrains.kotlin.psi.KtValueArgument
 import org.jetbrains.kotlin.psi.KtValueArgumentList
-import org.jetbrains.kotlin.psi.psiUtil.getStrictParentOfType
-import org.jetbrains.kotlin.resolve.bindingContextUtil.getReferenceTargets
-import org.jetbrains.kotlin.resolve.lazy.BodyResolveMode
 import org.jetbrains.kotlin.resolve.lazy.descriptors.LazyClassDescriptor
 
 @Suppress("Detekt.ComplexMethod", "Detekt.ReturnCount")
-class KotlinFunctionArgumentsHelperIntention : SelfTargetingIntention<KtValueArgumentList>(
-    KtValueArgumentList::class.java,
-    { "Fill class constructor" }
-) {
-    override fun isApplicableTo(element: KtValueArgumentList, caretOffset: Int): Boolean {
-        val descriptor = element.descriptor() ?: return false
-        if (descriptor.valueParameters.size == element.arguments.size) return false
-        setTextGetter {
-            if (descriptor is ClassConstructorDescriptor) "Fill constructor arguments" else "Fill function arguments"
-        }
-        return true
-    }
+class AddArgumentsQuickFix(
+    private val description: String,
+    private val withoutDefaultValues: Boolean,
+    private val withoutDefaultArguments: Boolean
+) : LocalQuickFix {
+    override fun getName() = description
 
-    override fun applyTo(element: KtValueArgumentList, editor: Editor?) {
+    override fun getFamilyName() = name
+
+    override fun applyFix(project: Project, descriptor: ProblemDescriptor) {
+        val element = descriptor.psiElement as? KtValueArgumentList ?: return
         val parameters = element.descriptor()?.valueParameters ?: return
         element.fillArguments(parameters)
     }
 
-    private fun KtValueArgumentList.descriptor(): FunctionDescriptor? {
-        val calleeExpression = getStrictParentOfType<KtCallExpression>()?.calleeExpression ?: return null
-        val context = calleeExpression.analyze(BodyResolveMode.PARTIAL)
-        val descriptor = calleeExpression.getReferenceTargets(context).firstOrNull() as? FunctionDescriptor
-        return if (descriptor is JavaCallableMemberDescriptor) {
-            null
-        } else {
-            descriptor.takeIf { it is ClassConstructorDescriptor || it is SimpleFunctionDescriptor }
-        }
-    }
-
     private fun KtValueArgumentList.fillArguments(parameters: List<ValueParameterDescriptor>) {
+        val arguments = this.arguments
         val argumentNames = arguments.mapNotNull { it.getArgumentName()?.asName?.identifier }
         val factory = KtPsiFactory(this)
         parameters.forEachIndexed { index, parameter ->
-            if (arguments.size > index && !arguments[index].isNamed()) return
-            if (parameter.name.identifier in argumentNames) return
-
+            if (arguments.size > index && !arguments[index].isNamed()) return@forEachIndexed
+            if (parameter.name.identifier in argumentNames) return@forEachIndexed
+            if (withoutDefaultArguments && parameter.declaresDefaultValue()) return@forEachIndexed
             val added = addArgument(createDefaultValueArgument(parameter, factory))
             val argumentExpression = added.getArgumentExpression()
             if (argumentExpression is KtQualifiedExpression) {
@@ -73,6 +54,10 @@ class KotlinFunctionArgumentsHelperIntention : SelfTargetingIntention<KtValueArg
         parameter: ValueParameterDescriptor,
         factory: KtPsiFactory
     ): KtValueArgument {
+        if (withoutDefaultValues) {
+            return factory.createArgument(null, parameter.name)
+        }
+
         val type = parameter.type
         val defaultValue = when {
             KotlinBuiltIns.isBoolean(type) -> "false"

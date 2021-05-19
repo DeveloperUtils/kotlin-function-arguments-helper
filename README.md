@@ -5,7 +5,7 @@
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.developerutils.kotlin-function-arguments-helper.svg)](https://plugins.jetbrains.com/plugin/14168-kotlin-function-arguments-helper)
 
 <!-- Plugin description -->
-IntelliJ plugin that provides intention action for constructors or functions to fill in arguments with name and a default value.
+IntelliJ plugin that provides inspection quick fix for constructors or functions to add arguments with name and a default value.
 
 
 <a target="_blank" href="https://user-images.githubusercontent.com/774381/79955782-8f69a580-847f-11ea-94fa-c07a8816d7f8.gif">
