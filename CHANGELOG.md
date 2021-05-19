@@ -17,15 +17,11 @@
 - detekt is using default configuration from [https://github.com/detekt/detekt/blob/master/detekt-core/src/main/resources/default-detekt-config.yml](https://github.com/detekt/detekt/blob/693f4f3/detekt-core/src/main/resources/default-detekt-config.yml)
 - Plugin is verified against release 2021.1 instead of pre-release 211.5538.20
 
-### Deprecated
-
 ### Removed
 - KotlinFunctionArgumentsHelperIntention
 
 ### Fixed
 - patching `CHANGELOG.md` leaded to build error
-
-### Security
 
 ## [2021.1.2]
 ### Added
