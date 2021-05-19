@@ -11,9 +11,12 @@
 
     <description><![CDATA[filled-by-idea-gradle-plugin from README.md]]></description>
     <extensions defaultExtensionNs="com.intellij">
-        <intentionAction>
-            <className>com.github.developerutils.kotlinfunctionargumentshelper.KotlinFunctionArgumentsHelperIntention</className>
-            <category>Kotlin</category>
-        </intentionAction>
+        <localInspection implementationClass="com.github.developerutils.kotlinfunctionargumentshelper.KotlinFunctionArgumentsHelperInspection"
+                         groupPath="Kotlin"
+                         groupName="Arguments"
+                         enabledByDefault="true"
+                         level="INFORMATION"
+                         language="kotlin"
+                         displayName="Add missing call arguments" />
     </extensions>
 </idea-plugin>

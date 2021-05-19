@@ -4,13 +4,23 @@
 
 ## [Unreleased]
 ### Added
+- Plugin configuration options. You can now change the plugin behavior by setting options in the inspections settings. Currently, these two options are supported:
+  - Don't add default values (guessed by variable type)
+  - Do not add arguments that have default values declared
 
 ### Changed
-- upgraded *gradle* to 7.0.2
+- Kotlin Function Arguments Helper is now an inspection instead of a intention (because they can have options)
+- Quick fix is now named `Add missing constructor arguments` and `Add missing function arguments` instead of `Fill (constructor|function) arguments`
+- upgraded
+  - *gradle* to 7.0.2
+  - *kotlin* to 1.5.0
+- detekt is using default configuration from [https://github.com/detekt/detekt/blob/master/detekt-core/src/main/resources/default-detekt-config.yml](https://github.com/detekt/detekt/blob/693f4f3/detekt-core/src/main/resources/default-detekt-config.yml)
+- Plugin is verified against release 2021.1 instead of pre-release 211.5538.20
 
 ### Deprecated
 
 ### Removed
+- KotlinFunctionArgumentsHelperIntention
 
 ### Fixed
 - patching `CHANGELOG.md` leaded to build error
