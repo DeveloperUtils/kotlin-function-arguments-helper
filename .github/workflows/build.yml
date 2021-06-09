@@ -73,8 +73,8 @@ jobs:
       - name: Run Linters and Test
         run: ./gradlew check
 
-      - name: Archive test results
-        uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v2
+        if: failure()
         with:
           name: test-report
           path: ./build/reports/tests/
