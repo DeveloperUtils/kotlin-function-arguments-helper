@@ -6,6 +6,11 @@
 ### Added
 
 ### Changed
+- rebased on latest [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template) 
+- upgraded
+  - *gradle* to 7.3
+  - *kotlin* to 1.6.0
+  - *detekt* to 1.18.1
 
 ### Deprecated
 
