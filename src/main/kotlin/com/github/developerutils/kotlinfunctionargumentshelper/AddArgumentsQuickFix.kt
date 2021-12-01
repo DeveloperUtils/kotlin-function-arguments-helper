@@ -4,19 +4,24 @@ import com.intellij.codeInspection.LocalQuickFix
 import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.openapi.project.Project
 import org.jetbrains.kotlin.builtins.KotlinBuiltIns
+import org.jetbrains.kotlin.builtins.isFunctionType
 import org.jetbrains.kotlin.descriptors.ClassConstructorDescriptor
 import org.jetbrains.kotlin.descriptors.ClassKind
 import org.jetbrains.kotlin.descriptors.Modality
 import org.jetbrains.kotlin.descriptors.ValueParameterDescriptor
+import org.jetbrains.kotlin.idea.core.CollectingNameValidator
+import org.jetbrains.kotlin.idea.core.KotlinNameSuggester
 import org.jetbrains.kotlin.idea.core.ShortenReferences
 import org.jetbrains.kotlin.idea.imports.importableFqName
 import org.jetbrains.kotlin.idea.intentions.callExpression
 import org.jetbrains.kotlin.psi.KtCallExpression
+import org.jetbrains.kotlin.psi.KtLambdaExpression
 import org.jetbrains.kotlin.psi.KtPsiFactory
 import org.jetbrains.kotlin.psi.KtQualifiedExpression
 import org.jetbrains.kotlin.psi.KtValueArgument
 import org.jetbrains.kotlin.psi.KtValueArgumentList
 import org.jetbrains.kotlin.resolve.lazy.descriptors.LazyClassDescriptor
+import org.jetbrains.kotlin.types.KotlinType
 
 @Suppress("Detekt.ComplexMethod", "Detekt.ReturnCount")
 class AddArgumentsQuickFix(
@@ -44,7 +49,7 @@ class AddArgumentsQuickFix(
             if (withoutDefaultArguments && parameter.declaresDefaultValue()) return@forEachIndexed
             val added = addArgument(createDefaultValueArgument(parameter, factory))
             val argumentExpression = added.getArgumentExpression()
-            if (argumentExpression is KtQualifiedExpression) {
+            if (argumentExpression is KtQualifiedExpression || argumentExpression is KtLambdaExpression) {
                 ShortenReferences.DEFAULT.process(argumentExpression)
             }
         }
@@ -59,21 +64,7 @@ class AddArgumentsQuickFix(
         }
 
         val type = parameter.type
-        val defaultValue = when {
-            KotlinBuiltIns.isBoolean(type) -> "false"
-            KotlinBuiltIns.isChar(type) -> "''"
-            KotlinBuiltIns.isDouble(type) -> "0.0"
-            KotlinBuiltIns.isFloat(type) -> "0.0f"
-            KotlinBuiltIns.isInt(type) || KotlinBuiltIns.isLong(type) || KotlinBuiltIns.isShort(type) -> "0"
-            KotlinBuiltIns.isCollectionOrNullableCollection(type) -> "arrayOf()"
-            KotlinBuiltIns.isNullableAny(type) -> "null"
-            KotlinBuiltIns.isString(type) -> "\"\""
-            KotlinBuiltIns.isListOrNullableList(type) -> "listOf()"
-            KotlinBuiltIns.isSetOrNullableSet(type) -> "setOf()"
-            KotlinBuiltIns.isMapOrNullableMap(type) -> "mapOf()"
-            type.isMarkedNullable -> "null"
-            else -> null
-        }
+        val defaultValue = calculateDefaultValue(type)
         if (defaultValue != null) {
             return factory.createArgument(factory.createExpression(defaultValue), parameter.name)
         }
@@ -97,4 +88,40 @@ class AddArgumentsQuickFix(
         }
         return factory.createArgument(argumentExpression, parameter.name)
     }
+
+    private fun calculateDefaultValue(type: KotlinType) = when {
+        KotlinBuiltIns.isBoolean(type) -> "false"
+        KotlinBuiltIns.isChar(type) -> "''"
+        KotlinBuiltIns.isDouble(type) -> "0.0"
+        KotlinBuiltIns.isFloat(type) -> "0.0f"
+        KotlinBuiltIns.isInt(type) || KotlinBuiltIns.isLong(type) || KotlinBuiltIns.isShort(type) -> "0"
+        KotlinBuiltIns.isCollectionOrNullableCollection(type) -> "arrayOf()"
+        KotlinBuiltIns.isNullableAny(type) -> "null"
+        KotlinBuiltIns.isString(type) -> "\"\""
+        KotlinBuiltIns.isListOrNullableList(type) -> "listOf()"
+        KotlinBuiltIns.isSetOrNullableSet(type) -> "setOf()"
+        KotlinBuiltIns.isMapOrNullableMap(type) -> "mapOf()"
+        type.isFunctionType -> calculateLambdaDefaultvalue(type)
+        type.isMarkedNullable -> "null"
+        else -> null
+    }
+
+    private fun calculateLambdaDefaultvalue(ktType: KotlinType): String =
+        buildString {
+            append("{")
+            if (ktType.arguments.size > 2) {
+                val validator = CollectingNameValidator()
+                val lambdaParameters = ktType.arguments.dropLast(1).joinToString(postfix = "->") {
+                    val type = it.type
+                    val name = KotlinNameSuggester.suggestNamesByType(type, validator, "param")[0]
+                    validator.addName(name)
+                    val typeText =
+                        type.constructor.declarationDescriptor?.importableFqName?.asString() ?: type.toString()
+                    val nullable = if (type.isMarkedNullable) "?" else ""
+                    "$name: $typeText$nullable"
+                }
+                append(lambdaParameters)
+            }
+            append("}")
+        }
 }

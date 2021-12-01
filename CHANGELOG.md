@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 ### Added
+- arguments of type lambda filled with lambda stub and
+  - if lambda has 2+ parameters: add also parameter with guessed names 
 
 ### Changed
 - rebased on latest [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template) 
