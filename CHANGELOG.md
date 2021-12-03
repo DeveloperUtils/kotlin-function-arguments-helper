@@ -14,12 +14,6 @@
   - *kotlin* to 1.6.0
   - *detekt* to 1.18.1
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
 ### Security
 ## [2021.2.0]
 ### Added
