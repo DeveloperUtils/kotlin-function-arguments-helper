@@ -14,7 +14,6 @@
   - *kotlin* to 1.6.0
   - *detekt* to 1.18.1
 
-### Security
 ## [2021.2.0]
 ### Added
 - Plugin configuration options. You can now change the plugin behavior by setting options in the inspections settings. Currently, these two options are supported:
