@@ -4,12 +4,26 @@
 
 ## [Unreleased]
 ### Added
+### Changed
+
+## [2022.1.0]
+### Added
 - arguments of type lambda filled with lambda stub and
   - if lambda has 2+ parameters: add also parameter with guessed names 
 
 ### Changed
+- imported changes from yet unsubmitted PR [IntelliJ Platform Plugin Template#Next](https://github.com/JetBrains/intellij-platform-plugin-template/pull/240/files) 
 - rebased on latest [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template) 
 - upgraded
+  - Update `platformVersion` to `2021.2.4`
+  - Change since/until build to `212-221.*` (2021.2 - 2022.1)
+  - Dependencies - upgrade `org.jetbrains.intellij` to `1.6.0`
+  - Dependencies - upgrade `org.jetbrains.kotlin.jvm` to `1.6.21`
+  - Dependencies (GitHub Actions) - upgrade `actions/checkout` to `3`
+  - Dependencies (GitHub Actions) - upgrade `actions/cache` to `3`
+  - Dependencies (GitHub Actions) - upgrade `actions/setup-java` to `3`
+  - Dependencies (GitHub Actions) - upgrade `actions/upload-artifact` to `3`
+  - Dependencies (GitHub Actions) - upgrade `JetBrains/qodana-action` to `5.1.0`
   - *gradle* to 7.3
   - *kotlin* to 1.6.0
   - *detekt* to 1.18.1
