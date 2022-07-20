@@ -39,7 +39,7 @@ Inspired by and extended from [Kotlin Fill Class Plugin](https://github.com/suus
 
 ## Thanks
 
-- [@suunsa](https://github.com/suunsan2go) For the plugin idea and development of it.
+- [@suunsa](https://github.com/suusan2go) For the plugin idea and development of it.
 - [@t-kameyama](https://github.com/t-kameyama) Fill function call arguments [#17](https://github.com/suusan2go/kotlin-fill-class/pull/17)
 - [@shiraji](https://github.com/shiraji) Convert to intention & Support non-empty constructor [#6](https://github.com/suusan2go/kotlin-fill-class/pull/6)
 - [@Pluu](https://github.com/Pluu) [@naofumi-fujii](https://github.com/naofumi-fujii]) fix #2 Double type fill error [#3](https://github.com/suusan2go/kotlin-fill-class/pull/3)
