@@ -6,6 +6,15 @@
 
 ## [2021.3.0]
 ### Added
+- arguments of type lambda filled with lambda stub and
+  - if lambda has 2+ parameters: add also parameter with guessed names
+
+### Changed
+- rebased on latest [IntelliJ Platform Plugin Template](https://github.com/JetBrains/intellij-platform-plugin-template)
+- upgraded
+  - *gradle* to 7.3
+  - *kotlin* to 1.6.0
+  - *detekt* to 1.18.1
 
 ## [2021.2.0]
 ### Added
