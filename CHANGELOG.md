@@ -3,6 +3,14 @@
 # Kotlin Function Arguments Helper Changelog
 
 ## [Unreleased]
+### Added
+### Changed
+### Fixed
+### Security
+### Deprecated
+### Removed
+
+## [2022.1.0]
 ### Changed
 - imported changes from yet unsubmitted PR [IntelliJ Platform Plugin Template#Next](https://github.com/JetBrains/intellij-platform-plugin-template/pull/240/files) 
 - upgraded
