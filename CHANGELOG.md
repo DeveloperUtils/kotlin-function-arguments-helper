@@ -3,8 +3,9 @@
 # Kotlin Function Arguments Helper Changelog
 
 ## [Unreleased]
-### Added
 ### Changed
+- Update `platformVersion` to `2022.1.4`
+- Change since/until build to `221-231.*` (2022.1 - 2023.1)
 ### Fixed
 ### Security
 ### Deprecated
