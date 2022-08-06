@@ -3,8 +3,11 @@
 # Kotlin Function Arguments Helper Changelog
 
 ## [Unreleased]
-### Added
 ### Changed
+- Applied changes from [IntelliJ Platform Plugin Template#Next@f8b4bb9](https://github.com/JetBrains/intellij-platform-plugin-template/tree/next)
+- Update kotlin to v1.7.10
+- Update `platformVersion` to `2021.3.3`
+- Change since/until build to `213-222.*` (2021.3 - 2022.2)
 ### Fixed
 ### Security
 ### Deprecated
