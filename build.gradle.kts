@@ -31,6 +31,7 @@ kotlin {
         languageVersion.set(JavaLanguageVersion.of(11))
     }
 }
+
 dependencies {
     detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:1.18.1")
 }
@@ -48,7 +49,12 @@ intellij {
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
     version.set(properties("pluginVersion"))
-    groups.set(emptyList())
+//    path.set("${project.projectDir}/CHANGELOG.md")
+//    header.set(provider { "[${version.get()}]" })
+//    itemPrefix.set("-")
+//    keepUnreleasedSection.set(true)
+//    unreleasedTerm.set("[Unreleased]")
+    groups.set(listOf("Added", "Changed", "Deprecated", "Removed", "Fixed", "Security"))
 }
 
 // Configure detekt plugin.
