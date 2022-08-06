@@ -8,10 +8,6 @@
 - Update kotlin to v1.7.10
 - Update `platformVersion` to `2021.3.3`
 - Change since/until build to `213-222.*` (2021.3 - 2022.2)
-### Fixed
-### Security
-### Deprecated
-### Removed
 
 ## [2022.1.0]
 ### Changed
