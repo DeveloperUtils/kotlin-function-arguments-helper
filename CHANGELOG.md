@@ -3,17 +3,10 @@
 # Kotlin Function Arguments Helper Changelog
 
 ## [Unreleased]
-### Added
-
 ### Changed
 
-### Deprecated
-
-### Removed
-
-### Fixed
-
-### Security
+- Update kotlin to v1.7.22
+- Update compatibility for IDEA 2021.3 - 2023.1
 
 ## [2022.1.1]
 ### Changed
