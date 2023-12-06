@@ -7,6 +7,7 @@
 ### Added
 
 ### Changed
+- Update kotlin to v1.9.21
 
 ### Deprecated
 
