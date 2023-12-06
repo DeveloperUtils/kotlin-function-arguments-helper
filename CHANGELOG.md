@@ -8,6 +8,7 @@
 
 ### Changed
 - Update kotlin to v1.9.21
+- Update compatibility for IDEA 2021.3 - 2023.3
 
 ### Deprecated
 
