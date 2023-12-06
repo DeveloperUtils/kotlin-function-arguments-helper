@@ -7,8 +7,6 @@
 ### Added
 
 ### Changed
-- Update kotlin to v1.9.21
-- Update compatibility for IDEA 2021.3 - 2023.3
 
 ### Deprecated
 
@@ -17,6 +15,12 @@
 ### Fixed
 
 ### Security
+
+## 2023.1.0 - 2023-12-06
+
+### Changed
+- Update kotlin to v1.9.21
+- Update compatibility for IDEA 2021.3 - 2023.3
 
 ## 2022.1.2 - 2022-12-06
 
